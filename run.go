@@ -1,7 +1,6 @@
 package httprunner
 
 import (
-	"github.com/curt-labs/API/helpers/encoding"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/render"
 	"net/http"
@@ -57,7 +56,6 @@ func (b *Runner) worker(wg *sync.WaitGroup, ch chan *http.Request) {
 		}
 
 		m.Use(render.Renderer())
-		m.Use(encoding.MapEncoder)
 		// m.Use(b.Req.Middleware)
 		m.MapTo(r, (*martini.Routes)(nil))
 
