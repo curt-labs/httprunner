@@ -3,8 +3,6 @@ package httprunner
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/curt-labs/API/controllers/middleware"
-	"github.com/curt-labs/API/helpers/encoding"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/render"
 	"github.com/rakyll/pb"
@@ -180,8 +178,6 @@ func Req(handler martini.Handler, method, prepared_route, route string, args ...
 	}
 
 	m.Use(render.Renderer())
-	m.Use(encoding.MapEncoder)
-	m.Use(middleware.Meddler())
 	m.Action(r.Handle)
 
 	if len(args) > 0 && args[0] != nil {
